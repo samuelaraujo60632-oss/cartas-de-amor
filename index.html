@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Minha Princesa ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg,#fff0f5,#ffe0eb,#fff7f0);
+  color: #754052;
+  text-align: center;
+}
+
+header {
+  padding: 55px 20px 35px;
+}
+
+h1 {
+  font-size: 38px;
+  color: #c34f83;
+}
+
+h2 { color: #c34f83; }
+
+p { line-height: 1.8; }
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 15px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 22px;
+  margin: 22px 0;
+  box-shadow: 0 5px 20px #d58b9120;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 9px 0;
+  border: 1px solid #efbfd1;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+textarea { min-height: 130px; }
+
+button {
+  background: #d76b96;
+  color: white;
+  border: 0;
+  padding: 13px 22px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 7px;
+}
+
+button:hover { background: #bd4779; }
+
+.letter {
+  background: #fff7fa;
+  border: 1px solid #f4d3df;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: left;
+  margin-top: 15px;
+  white-space: pre-wrap;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+audio { width: 100%; margin-top: 12px; }
+
+footer {
+  padding: 35px;
+  color: #b76b86;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  animation: subir 7s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes subir {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media(max-width:600px) {
+  h1 { font-size: 30px; }
+  .gallery { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>❤️ Para Minha Princesa ❤️</h1>
+  <p>Um cantinho especial feito com muito amor.</p>
+</header>
+
+<main>
+
+<section class="card">
+  <h2>💌 Uma surpresa para você</h2>
+  <p>
+    Cada detalhe deste site foi pensado com carinho.
+    Quero que você saiba o quanto é especial para mim.
+  </p>
+  <button onclick="document.getElementById('cartas').scrollIntoView({behavior:'smooth'})">
+    Abrir minhas cartas ❤️
+  </button>
+</section>
+
+<section class="card" id="cartas">
+  <h2>💌 Minhas cartas de amor</h2>
+
+  <input id="destino" placeholder="Seu nome ou apelido carinhoso">
+
+  <input id="remetente" placeholder="Meu nome">
+
+  <textarea id="mensagem" placeholder="Escreva aqui sua declaração de amor..."></textarea>
+
+  <button onclick="criarCarta()">Criar minha carta 💗</button>
+
+  <div id="resultado"></div>
+</section>
+
+<section class="card">
+  <h2>📸 Nossa galeria</h2>
+  <p>Momentos especiais que merecem ser lembrados.</p>
+
+  <input type="file" id="fotos" accept="image/*" multiple>
+
+  <div class="gallery" id="galeria"></div>
+</section>
+
+<section class="card">
+  <h2>🎵 Nossas músicas</h2>
+  <p>Uma música especial para acompanhar este momento.</p>
+
+  <input type="file" id="musicas" accept="audio/*" multiple>
+  <div id="players"></div>
+</section>
+
+<section class="card">
+  <h2>❤️ Uma última declaração</h2>
+  <p>
+    Você é uma pessoa muito especial.
+    Espero que este pequeno cantinho consiga demonstrar
+    um pouco do carinho que tenho por você.
+  </p>
+  <p><strong>Com carinho, para sempre no meu coração. ❤️</strong></p>
+</section>
+
+</main>
+
+<footer>
+  Feito com ❤️ especialmente para você.
+</footer>
+
+<script>
+function criarCarta() {
+  const destino = document.getElementById('destino').value;
+  const remetente = document.getElementById('remetente').value;
+  const mensagem = document.getElementById('mensagem').value;
+
+  if (!destino || !remetente || !mensagem) {
+    alert('Preencha todos os campos!');
+    return;
+  }
+
+  const carta = document.createElement('div');
+  carta.className = 'letter';
+
+  const titulo = document.createElement('h3');
+  titulo.textContent = '💌 Para ' + destino;
+
+  const texto = document.createElement('p');
+  texto.textContent = mensagem;
+
+  const assinatura = document.createElement('p');
+  assinatura.textContent = 'Com carinho, ' + remetente + ' ❤️';
+
+  carta.append(titulo, texto, assinatura);
+
+  document.getElementById('resultado').prepend(carta);
+}
+
+document.getElementById('fotos').addEventListener('change', function() {
+  const galeria = document.getElementById('galeria');
+  galeria.innerHTML = '';
+
+  Array.from(this.files).forEach(file => {
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    galeria.appendChild(img);
+  });
+});
+
+document.getElementById('musicas').addEventListener('change', function() {
+  const players = document.getElementById('players');
+  players.innerHTML = '';
+
+  Array.from(this.files).forEach(file => {
+    const div = document.createElement('div');
+    const nome = document.createElement('p');
+    nome.textContent = file.name;
+
+    const audio = document.createElement('audio');
+    audio.controls = true;
+    audio.src = URL.createObjectURL(file);
+
+    div.append(nome, audio);
+    players.appendChild(div);
+  });
+});
+
+function coracoes() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.textContent = '❤️';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}
+
+setInterval(coracoes, 900);
+</script>
+
+</body>
+</html>
