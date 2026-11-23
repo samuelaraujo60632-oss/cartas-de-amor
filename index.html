@@ -11,13 +11,13 @@
 body {
   margin: 0;
   font-family: Georgia, serif;
-  background: linear-gradient(135deg,#fff0f5,#ffe0eb,#fff7f0);
   color: #754052;
   text-align: center;
+  background: linear-gradient(135deg, #fff0f5, #ffe3ed, #fff7f0);
 }
 
 header {
-  padding: 55px 20px 35px;
+  padding: 55px 15px 30px;
 }
 
 h1 {
@@ -26,8 +26,6 @@ h1 {
 }
 
 h2 { color: #c34f83; }
-
-p { line-height: 1.8; }
 
 main {
   max-width: 850px;
@@ -39,48 +37,33 @@ main {
   background: white;
   padding: 25px;
   border-radius: 22px;
-  margin: 22px 0;
-  box-shadow: 0 5px 20px #d58b9120;
+  box-shadow: 0 8px 25px #d85b9120;
+  margin-bottom: 22px;
 }
-
-input, textarea {
-  width: 100%;
-  padding: 14px;
-  margin: 9px 0;
-  border: 1px solid #efbfd1;
-  border-radius: 12px;
-  font-size: 16px;
-  font-family: inherit;
-}
-
-textarea { min-height: 130px; }
 
 button {
-  background: #d76b96;
-  color: white;
-  border: 0;
+  border: none;
   padding: 13px 22px;
   border-radius: 25px;
-  cursor: pointer;
+  background: #e86da1;
+  color: white;
   font-size: 16px;
-  margin: 7px;
+  cursor: pointer;
+  margin: 8px;
 }
 
-button:hover { background: #bd4779; }
+button:hover { background: #c34f83; }
 
 .letter {
-  background: #fff7fa;
-  border: 1px solid #f4d3df;
-  padding: 20px;
-  border-radius: 15px;
-  text-align: left;
-  margin-top: 15px;
   white-space: pre-wrap;
+  text-align: left;
+  line-height: 1.9;
+  font-size: 17px;
 }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
@@ -88,21 +71,21 @@ button:hover { background: #bd4779; }
   width: 100%;
   height: 220px;
   object-fit: cover;
-  border-radius: 15px;
+  border-radius: 14px;
 }
 
-audio { width: 100%; margin-top: 12px; }
-
-footer {
-  padding: 35px;
-  color: #b76b86;
+audio {
+  width: 100%;
+  margin-top: 12px;
 }
 
 .heart {
   position: fixed;
   bottom: -30px;
-  animation: subir 7s linear forwards;
+  color: #ec8db4;
   pointer-events: none;
+  animation: subir 7s linear forwards;
+  z-index: 10;
 }
 
 @keyframes subir {
@@ -112,9 +95,11 @@ footer {
   }
 }
 
+#surpresa { display: none; }
+
 @media(max-width:600px) {
-  h1 { font-size: 30px; }
   .gallery { grid-template-columns: 1fr; }
+  h1 { font-size: 30px; }
 }
 </style>
 </head>
@@ -122,139 +107,99 @@ footer {
 <body>
 
 <header>
-  <h1>❤️ Para Minha Princesa ❤️</h1>
-  <p>Um cantinho especial feito com muito amor.</p>
+  <h1>💌 Para Minha Princesa ❤️</h1>
+  <p>Uma surpresa feita especialmente para você, meu amor! 💗</p>
 </header>
 
 <main>
 
 <section class="card">
-  <h2>💌 Uma surpresa para você</h2>
-  <p>
-    Cada detalhe deste site foi pensado com carinho.
-    Quero que você saiba o quanto é especial para mim.
-  </p>
-  <button onclick="document.getElementById('cartas').scrollIntoView({behavior:'smooth'})">
-    Abrir minhas cartas ❤️
-  </button>
-</section>
+  <h2>❤️ Minha declaração de amor ❤️</h2>
+  <p class="letter">OII MEU AMOR (MINHA PRINCESA)!
 
-<section class="card" id="cartas">
-  <h2>💌 Minhas cartas de amor</h2>
+FIZ ISSO EXCLUSIVAMENTE PARA VC, MINHA LINDA. EU TE AMO MUITO!
 
-  <input id="destino" placeholder="Seu nome ou apelido carinhoso">
+SEI QUE SOU DIFÍCIL, MAS EU VOU MUDAR TUDO ISSO PQ QUERO FICAR COM VC PARA SEMPRE.
 
-  <input id="remetente" placeholder="Meu nome">
+FICAR COM O MEU PRIMEIRO AMOR, MINHA PRINCESINHA LINDINHA, A MAIS FOFINHA DESSA TERRA.
 
-  <textarea id="mensagem" placeholder="Escreva aqui sua declaração de amor..."></textarea>
+AMOR, EU TE AMO MUITO COM TODO O MEU CORAÇÃO. EU FALO ISSO DE VERDADE.
 
-  <button onclick="criarCarta()">Criar minha carta 💗</button>
+AMOR, ME DESCULPA POR SER CHATO COM VC, POR NÃO ENTENDER VC SEMPRE, MAS ISSO TUDO VAI PASSAR, EU SEI QUE VAI. NÓS VAMOS NOS ENTENDER MUITO DAQUI PRA FRENTE.
 
-  <div id="resultado"></div>
-</section>
+AMOR, EU NÃO VOU DEIXAR VC POR NADA, PQ EU TE AMO MUITO MESMO.
 
-<section class="card">
-  <h2>📸 Nossa galeria</h2>
-  <p>Momentos especiais que merecem ser lembrados.</p>
+MINHA PEQUENA LAW (MINHA PRINCESA), EU TE AMO, VIU? ME DESCULPA POR TUDO DE RUIM QUE FIZ PARA VC.
 
-  <input type="file" id="fotos" accept="image/*" multiple>
+EU, SAMUEL, QUERO NAMORAR COM VC.
 
-  <div class="gallery" id="galeria"></div>
+MINHA HELLO KITTY! ❤️</p>
 </section>
 
 <section class="card">
-  <h2>🎵 Nossas músicas</h2>
-  <p>Uma música especial para acompanhar este momento.</p>
+  <h2>📸 Nossas lembranças ❤️</h2>
+  <p>Cada foto é uma lembrança especial!</p>
 
-  <input type="file" id="musicas" accept="audio/*" multiple>
-  <div id="players"></div>
+  <div class="gallery">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.14 (1).jpg" alt="Nossa foto 1">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.14.jpeg" alt="Nossa foto 2">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.15 (1).jpg" alt="Nossa foto 3">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.15 (2).jpg" alt="Nossa foto 4">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.15 (3).jpg" alt="Nossa foto 5">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.15.jpeg" alt="Nossa foto 6">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.16 (1).jpg" alt="Nossa foto 7">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.16 (2).jpg" alt="Nossa foto 8">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.16.jpeg" alt="Nossa foto 9">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.17 (1).jpg" alt="Nossa foto 10">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.17 (2).jpg" alt="Nossa foto 11">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.17.jpeg" alt="Nossa foto 12">
+    <img src="WhatsApp Image 2026-11-22 at 21.48.18.jpeg" alt="Nossa foto 13">
+  </div>
 </section>
 
 <section class="card">
-  <h2>❤️ Uma última declaração</h2>
-  <p>
-    Você é uma pessoa muito especial.
-    Espero que este pequeno cantinho consiga demonstrar
-    um pouco do carinho que tenho por você.
-  </p>
-  <p><strong>Com carinho, para sempre no meu coração. ❤️</strong></p>
+  <h2>🎵 Nossa música ❤️</h2>
+  <p>Uma música especial para você, meu amor!</p>
+  <audio controls>
+    <source src="Emmanuel%20Cortes%20-%20Amor.m4a" type="audio/mp4">
+    Seu navegador não consegue reproduzir esta música.
+  </audio>
+</section>
+
+<section class="card">
+  <h2>💍 Tenho uma pergunta para você...</h2>
+  <p>Minha princesa, aceita viver essa história comigo?</p>
+  <button onclick="responder()">SIM, EU ACEITO! ❤️</button>
+
+  <div id="surpresa">
+    <h2>❤️ EU TE AMO, MINHA PRINCESA! ❤️</h2>
+    <p>Que nossa história seja cheia de carinho, respeito, compreensão e momentos felizes!</p>
+    <p>Com amor, Samuel. 💗</p>
+  </div>
 </section>
 
 </main>
 
-<footer>
-  Feito com ❤️ especialmente para você.
+<footer style="padding:25px">
+  Feito com muito carinho por Samuel ❤️
 </footer>
 
 <script>
-function criarCarta() {
-  const destino = document.getElementById('destino').value;
-  const remetente = document.getElementById('remetente').value;
-  const mensagem = document.getElementById('mensagem').value;
-
-  if (!destino || !remetente || !mensagem) {
-    alert('Preencha todos os campos!');
-    return;
-  }
-
-  const carta = document.createElement('div');
-  carta.className = 'letter';
-
-  const titulo = document.createElement('h3');
-  titulo.textContent = '💌 Para ' + destino;
-
-  const texto = document.createElement('p');
-  texto.textContent = mensagem;
-
-  const assinatura = document.createElement('p');
-  assinatura.textContent = 'Com carinho, ' + remetente + ' ❤️';
-
-  carta.append(titulo, texto, assinatura);
-
-  document.getElementById('resultado').prepend(carta);
+function responder() {
+  document.getElementById("surpresa").style.display = "block";
 }
 
-document.getElementById('fotos').addEventListener('change', function() {
-  const galeria = document.getElementById('galeria');
-  galeria.innerHTML = '';
-
-  Array.from(this.files).forEach(file => {
-    const img = document.createElement('img');
-    img.src = URL.createObjectURL(file);
-    galeria.appendChild(img);
-  });
-});
-
-document.getElementById('musicas').addEventListener('change', function() {
-  const players = document.getElementById('players');
-  players.innerHTML = '';
-
-  Array.from(this.files).forEach(file => {
-    const div = document.createElement('div');
-    const nome = document.createElement('p');
-    nome.textContent = file.name;
-
-    const audio = document.createElement('audio');
-    audio.controls = true;
-    audio.src = URL.createObjectURL(file);
-
-    div.append(nome, audio);
-    players.appendChild(div);
-  });
-});
-
-function coracoes() {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.textContent = '❤️';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.fontSize = (15 + Math.random() * 20) + 'px';
-  document.body.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 7000);
+function criarCoracao() {
+  const coracao = document.createElement("div");
+  coracao.className = "heart";
+  coracao.textContent = "❤️";
+  coracao.style.left = Math.random() * 100 + "vw";
+  coracao.style.fontSize = (15 + Math.random() * 20) + "px";
+  document.body.appendChild(coracao);
+  setTimeout(() => coracao.remove(), 7000);
 }
 
-setInterval(coracoes, 900);
+setInterval(criarCoracao, 700);
 </script>
 
 </body>
