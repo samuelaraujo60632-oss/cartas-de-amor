@@ -1,0 +1,421 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartas de Amor 💌</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  color: #75465a;
+  background: linear-gradient(135deg, #fff8fb, #ffe3ed);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  padding: 45px 15px 25px;
+}
+
+h1 {
+  color: #c34f83;
+  font-size: 38px;
+}
+
+.subtitle {
+  color: #a96b83;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 15px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 22px;
+  box-shadow: 0 8px 25px #d85b9120;
+  margin-bottom: 22px;
+}
+
+h2 {
+  color: #c34f83;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin: 14px 0 7px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #efbfd1;
+  border-radius: 12px;
+  background: #fffafd;
+  font-size: 15px;
+  outline: none;
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+button {
+  border: none;
+  padding: 13px 20px;
+  border-radius: 30px;
+  background: #e86da1;
+  color: white;
+  cursor: pointer;
+  margin-top: 12px;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #c34f83;
+}
+
+.preview {
+  background: #fff0f6;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  min-height: 170px;
+}
+
+.letter {
+  white-space: pre-wrap;
+  text-align: left;
+  line-height: 1.8;
+  margin-top: 20px;
+}
+
+.tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.tool {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.tool h3 {
+  color: #c34f83;
+}
+
+audio {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gallery img {
+  width: calc(50% - 5px);
+  height: 130px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  color: #ec8db4;
+  pointer-events: none;
+  animation: subir 7s linear forwards;
+  z-index: 10;
+}
+
+@keyframes subir {
+  to {
+    transform: translateY(-110vh) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #b17a90;
+}
+
+@media(max-width:600px) {
+  .tools {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>🌸 💗 🌷</div>
+  <h1>💌 Cartas de Amor</h1>
+  <p class="subtitle">Palavras bonitas para guardar no coração ❤️</p>
+</header>
+
+<main class="container">
+
+  <section class="card">
+    <h2>Escreva sua carta 💗</h2>
+
+    <label>Nome de quem vai receber</label>
+    <input id="destinatario" placeholder="Nome da pessoa">
+
+    <label>Seu nome</label>
+    <input id="remetente" placeholder="Seu nome">
+
+    <label>Sua declaração de amor</label>
+    <textarea id="mensagem"
+      placeholder="Escreva aqui sua declaração..."></textarea>
+
+    <button onclick="criarCarta()">💌 Criar minha carta</button>
+    <button onclick="limparCarta()">Limpar</button>
+  </section>
+
+  <section class="card">
+    <h2>Sua carta especial 💕</h2>
+
+    <div class="preview" id="preview">
+      💌
+      <p>Sua carta aparecerá aqui!</p>
+    </div>
+
+    <button onclick="copiarCarta()">📋 Copiar carta</button>
+    <button onclick="baixarCarta()">⬇️ Baixar carta</button>
+    <button onclick="compartilharCarta()">📤 Compartilhar</button>
+  </section>
+
+  <section class="tools">
+
+    <div class="tool">
+      <h3>🎵 Música de fundo</h3>
+      <p>Escolha uma música para tocar no site.</p>
+      <input type="file" id="fundoFile" accept="audio/*">
+      <audio id="fundo" controls loop></audio>
+      <button onclick="alternarMusica()">💗 Ligar / Desligar</button>
+    </div>
+
+    <div class="tool">
+      <h3>🎧 Player de música</h3>
+      <p>Escolha sua música favorita.</p>
+      <input type="file" id="playerFile" accept="audio/*">
+      <audio id="player" controls></audio>
+    </div>
+
+    <div class="tool">
+      <h3>📸 Galeria de fotos</h3>
+      <p>Adicione suas fotos especiais.</p>
+      <input type="file" id="fotos" accept="image/*" multiple>
+      <div class="gallery" id="galeria"></div>
+    </div>
+
+    <div class="tool">
+      <h3>💞 Chuva de corações</h3>
+      <p>Espalhe corações pela tela!</p>
+      <button onclick="chuva()">💗 Soltar corações</button>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  Feito com carinho 💗
+  <br>
+  Cartas de Amor © 2026
+</footer>
+
+<script>
+let cartaAtual = "";
+
+function criarCarta() {
+  const destino = document.getElementById("destinatario").value.trim();
+  const remetente = document.getElementById("remetente").value.trim();
+  const mensagem = document.getElementById("mensagem").value.trim();
+
+  if (!destino || !remetente || !mensagem) {
+    alert("Preencha todos os campos! 💗");
+    return;
+  }
+
+  cartaAtual =
+`Para: ${destino}
+
+${mensagem}
+
+Com carinho,
+${remetente} ❤️`;
+
+  const preview = document.getElementById("preview");
+  preview.innerHTML = "";
+
+  const titulo = document.createElement("h3");
+  titulo.textContent = "💌 Para " + destino;
+
+  const texto = document.createElement("p");
+  texto.className = "letter";
+  texto.textContent = mensagem + "\n\nCom carinho,\n" + remetente + " ❤️";
+
+  preview.append(titulo, texto);
+
+  alert("Sua carta foi criada! 💕");
+}
+
+function limparCarta() {
+  document.getElementById("destinatario").value = "";
+  document.getElementById("remetente").value = "";
+  document.getElementById("mensagem").value = "";
+  document.getElementById("preview").textContent =
+    "💌 Sua carta aparecerá aqui!";
+  cartaAtual = "";
+}
+
+async function copiarCarta() {
+  if (!cartaAtual) {
+    alert("Crie uma carta primeiro!");
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(cartaAtual);
+    alert("Carta copiada! 💗");
+  } catch {
+    alert("Não foi possível copiar. Tente baixar a carta.");
+  }
+}
+
+function baixarCarta() {
+  if (!cartaAtual) {
+    alert("Crie uma carta primeiro!");
+    return;
+  }
+
+  const arquivo = new Blob([cartaAtual], {
+    type: "text/plain;charset=utf-8"
+  });
+
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(arquivo);
+  link.download = "carta-de-amor.txt";
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
+async function compartilharCarta() {
+  if (!cartaAtual) {
+    alert("Crie uma carta primeiro!");
+    return;
+  }
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "Minha carta de amor 💌",
+        text: cartaAtual
+      });
+    } catch {}
+  } else {
+    copiarCarta();
+  }
+}
+
+function carregarMusica(inputId, audioId) {
+  document.getElementById(inputId).addEventListener("change", e => {
+    const arquivo = e.target.files[0];
+
+    if (arquivo) {
+      const audio = document.getElementById(audioId);
+      if (audio.dataset.url) {
+        URL.revokeObjectURL(audio.dataset.url);
+      }
+
+      const url = URL.createObjectURL(arquivo);
+      audio.dataset.url = url;
+      audio.src = url;
+      audio.load();
+    }
+  });
+}
+
+carregarMusica("fundoFile", "fundo");
+carregarMusica("playerFile", "player");
+
+function alternarMusica() {
+  const audio = document.getElementById("fundo");
+
+  if (!audio.src) {
+    alert("Escolha uma música primeiro!");
+    return;
+  }
+
+  if (audio.paused) {
+    audio.play().catch(() => alert("Aperte Play no player."));
+  } else {
+    audio.pause();
+  }
+}
+
+document.getElementById("fotos").addEventListener("change", e => {
+  [...e.target.files].forEach(arquivo => {
+    if (!arquivo.type.startsWith("image/")) return;
+
+    const imagem = document.createElement("img");
+    imagem.src = URL.createObjectURL(arquivo);
+    imagem.alt = "Foto especial";
+
+    document.getElementById("galeria").appendChild(imagem);
+  });
+});
+
+function criarCoracao() {
+  const coracao = document.createElement("div");
+  coracao.className = "heart";
+  coracao.textContent = ["💗", "💕", "❤️", "♡"][
+    Math.floor(Math.random() * 4)
+  ];
+
+  coracao.style.left = Math.random() * 100 + "vw";
+  coracao.style.fontSize = (15 + Math.random() * 20) + "px";
+
+  document.body.appendChild(coracao);
+
+  setTimeout(() => coracao.remove(), 7000);
+}
+
+setInterval(criarCoracao, 900);
+
+function chuva() {
+  for (let i = 0; i < 25; i++) {
+    setTimeout(criarCoracao, i * 100);
+  }
+}
+</script>
+
+</body>
+</html>
